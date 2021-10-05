@@ -29,5 +29,4 @@ class MainActivity : AppCompatActivity() {
             adapter.add(PropertyItem(viewModel, it))
         }
     }
-
 }
