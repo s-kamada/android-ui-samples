@@ -1,5 +1,6 @@
 package com.example.ui_samples.tutorial
 
+import android.R
 import android.app.Activity
 import android.graphics.Rect
 import android.view.View
@@ -8,13 +9,18 @@ import android.widget.FrameLayout
 import androidx.core.view.ViewCompat
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.view.ViewTreeObserver
-import timber.log.Timber
+import androidx.core.view.ViewPropertyAnimatorListenerAdapter
 
 class TutorialViewClient(
     private val activity: Activity
 ) {
+    interface Listener {
+        fun onDismissed()
+    }
+
     private val container: FrameLayout
     private val tutorialView: TutorialView
+    private lateinit var listener: Listener
 
     init {
         container = FrameLayout(activity)
@@ -24,8 +30,6 @@ class TutorialViewClient(
         val content = activity.window.decorView.findViewById<ViewGroup>(android.R.id.content)
         content.addView(container, MATCH_PARENT, MATCH_PARENT)
         container.addView(tutorialView, MATCH_PARENT, MATCH_PARENT)
-//        val inflatedLayout = content.getChildAt(0)
-//        this.fitsSystemWindows = inflatedLayout != null && inflatedLayout.fitsSystemWindows
         container.visibility = View.GONE
         container.alpha = 0F
     }
@@ -43,7 +47,30 @@ class TutorialViewClient(
             .alpha(1f)
             .setDuration(container.resources.getInteger(android.R.integer.config_longAnimTime).toLong())
             .start()
-        // container.setOnClickListener((v) -> { dismiss() })
+         container.setOnClickListener {
+             dismiss()
+         }
+        return this
+    }
+
+    private fun dismiss() {
+        ViewCompat.animate(container)
+            .alpha(0f)
+            .setDuration(container.resources.getInteger(R.integer.config_mediumAnimTime).toLong())
+            .setListener(object : ViewPropertyAnimatorListenerAdapter() {
+                override fun onAnimationEnd(view: View) {
+                    super.onAnimationEnd(view)
+                    val parent = view.parent
+                    if (parent is ViewGroup) {
+                        parent.removeView(view)
+                    }
+                    listener.onDismissed()
+                }
+            }).start()
+    }
+
+    public fun setOnClickListener(listener: Listener): TutorialViewClient {
+        this.listener = listener
         return this
     }
 
@@ -51,8 +78,6 @@ class TutorialViewClient(
 //    public fun setContentView(): TutorialViewClient {
 //        return this
 //    }
-
-
 
     companion object {
         public fun from(activity: Activity): TutorialViewClient {
@@ -65,8 +90,6 @@ class TutorialViewClient(
             val settings: ViewActionSettings = ViewActionSettings()
 //            val fileSystemWindow: Boolean
         ) {
-            var n = 0
-
             public fun on(view: View): ViewActions {
                 return client.on(view)
             }
@@ -83,9 +106,6 @@ class TutorialViewClient(
                 view.viewTreeObserver.addOnPreDrawListener(object :
                     ViewTreeObserver.OnPreDrawListener {
                     override fun onPreDraw(): Boolean {
-                        n += 1
-                        Timber.d("addonpredrawlistener: ${n}")
-
                         addRoundRectOnView(rectCornerRadius)
                         view.viewTreeObserver.removeOnPreDrawListener(this)
                         return false
@@ -106,7 +126,6 @@ class TutorialViewClient(
 
                 val roundRect = RoundRect(x, y, width, height)
                 client.tutorialView.addRoundRect(roundRect)
-//                addClickableView(roundRect, settings.onClickListener, additionalRadiusRatio)
                 client.tutorialView.postInvalidate()
             }
         }
@@ -121,11 +140,6 @@ class TutorialViewClient(
             public fun show(): TutorialViewClient {
                 return viewActions.show()
             }
-
-//            open fun onClick(onClickListener: View.OnClickListener?): ShapeViewActionsEditor? {
-//                viewActions.settings.onClickListener = onClickListener
-//                return this
-//            }
         }
 
         data class ViewActionSettings(

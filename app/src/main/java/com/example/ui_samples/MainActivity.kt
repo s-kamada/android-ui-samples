@@ -1,10 +1,7 @@
 package com.example.ui_samples
 
-import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.AndroidException
-import android.util.AttributeSet
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import com.example.ui_samples.databinding.ActivityMainBinding
@@ -47,6 +44,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     .on(binding.previewTextLabel)
                     .addRoundRect(40)
                     .show()
+                    .setOnClickListener(object : TutorialViewClient.Listener {
+                        override fun onDismissed() {
+                            Timber.d("clicked in listener")
+                        }
+                    })
             }.addTo(disposables)
 
 //        binding.tutorialButton.setOnClickListener(this)
