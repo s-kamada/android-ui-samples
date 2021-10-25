@@ -10,20 +10,20 @@ class RoundRect(
     var x: Int,
     var y: Int,
     var width: Int,
-    var height: Int
+    var height: Int,
+    var radius: Float
 ): Shape() {
 
     // TODO: rename?
     override fun draw(canvas: Canvas?, paint: Paint?) {
         val c = canvas ?: Canvas()
         val p = paint ?: Paint()
-        drawRect(c, x.toFloat(), y.toFloat(), x.toFloat() + width, y.toFloat() + height, p)
-    }
+        val left = x.toFloat()
+        val top = y.toFloat()
+        val right = x.toFloat() + width
+        val bottom = y.toFloat() + height
 
-    // TODO: ここにradius入れれば改善できる？
-    private fun drawRect(canvas: Canvas, left: Float, top: Float, right: Float, bottom: Float, paint: Paint) {
-        val radius = (bottom - top) / 2
         val rect = RectF(left, top, right, bottom)
-        canvas.drawRoundRect(rect, radius, radius, paint)
+        c.drawRoundRect(rect, radius, radius, p)
     }
 }

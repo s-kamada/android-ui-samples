@@ -106,7 +106,7 @@ class TutorialViewClient(
              * チュートリアルとしてハイライトする角丸長方形を追加する
              * @param rectCornerRadius 角丸長方形の角丸の半径
              */
-            public fun addRoundRect(rectCornerRadius: Int): ViewActionsEditor {
+            public fun addRoundRect(rectCornerRadius: Float): ViewActionsEditor {
                 view.viewTreeObserver.addOnPreDrawListener(object :
                     ViewTreeObserver.OnPreDrawListener {
                     override fun onPreDraw(): Boolean {
@@ -118,17 +118,17 @@ class TutorialViewClient(
                 return ViewActionsEditor(this)
             }
 
-            private fun addRoundRectOnView(rectCornerRadius: Int) {
+            private fun addRoundRectOnView(rectCornerRadius: Float) {
                 val rect = Rect()
                 view.getGlobalVisibleRect(rect)
                 val padding = 40
 
                 val x = rect.left - padding
-                val y = rect.top - padding// - getStatusBarOffset()
+                val y = rect.top - padding
                 val width = rect.width() + 2 * padding
                 val height = rect.height() + 2 * padding
 
-                val roundRect = RoundRect(x, y, width, height)
+                val roundRect = RoundRect(x, y, width, height, rectCornerRadius)
                 client.tutorialView.addRoundRect(roundRect)
                 client.tutorialView.postInvalidate()
             }

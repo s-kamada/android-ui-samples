@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 TutorialViewClient.from(this)
                     .setContentView(R.layout.view_tutorial_content)
                     .on(binding.previewTextLabel)
-                    .addRoundRect(40)
+                    .addRoundRect(8f)
                     .show()
                     .setOnClickListener(object : TutorialViewClient.Listener {
                         override fun onDismissed() {
