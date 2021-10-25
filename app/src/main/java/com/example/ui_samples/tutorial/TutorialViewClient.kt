@@ -36,6 +36,7 @@ class TutorialViewClient(
 
     /**
      * Rectを載せる対象のViewを設定
+     * TODO: ViewActions対象のviewをrecyclerViewにも複数もてるようにする、UQ appで試してみる(このアプリだとキーボードが上がった都合なのかわからない
      */
     fun on(view: View): ViewActions {
         return ViewActions(this, view)
@@ -95,6 +96,10 @@ class TutorialViewClient(
             private val client: TutorialViewClient,
             val view: View
         ) {
+
+            fun on(view: View): ViewActions {
+                return client.on(view)
+            }
 
             fun show(): TutorialViewClient {
                 return client.show()
