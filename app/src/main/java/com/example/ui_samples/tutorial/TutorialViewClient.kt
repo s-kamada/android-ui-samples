@@ -93,7 +93,7 @@ class TutorialViewClient(
 
         class ViewActions(
             private val client: TutorialViewClient,
-            val view: View,
+            val view: View
         ) {
 
             fun show(): TutorialViewClient {
