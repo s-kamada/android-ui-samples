@@ -20,6 +20,7 @@ class RoundRect(
         drawRect(c, x.toFloat(), y.toFloat(), x.toFloat() + width, y.toFloat() + height, p)
     }
 
+    // TODO: ここにradius入れれば改善できる？
     private fun drawRect(canvas: Canvas, left: Float, top: Float, right: Float, bottom: Float, paint: Paint) {
         val radius = (bottom - top) / 2
         val rect = RectF(left, top, right, bottom)

@@ -19,6 +19,7 @@
         tools:context=".MainActivity">
 
         <TextView
+            android:id="@+id/preview_text_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Hello World!"
@@ -36,13 +37,14 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="@{v -> vm.showTutorial()}"
-            android:text="@string/tutorial_view"
-            app:layout_constraintBottom_toTopOf="@+id/properties_recycler_view"
-            app:layout_constraintLeft_toLeftOf="parent" />
+<!--        <Button-->
+<!--            android:id="@+id/tutorial_button"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:onClick="@{v -> vm.showTutorial(v)}"-->
+<!--            android:text="@string/tutorial_view"-->
+<!--            app:layout_constraintBottom_toTopOf="@+id/properties_recycler_view"-->
+<!--            app:layout_constraintLeft_toLeftOf="parent" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
