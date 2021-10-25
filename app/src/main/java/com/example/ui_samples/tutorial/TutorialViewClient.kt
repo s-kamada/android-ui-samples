@@ -76,7 +76,6 @@ class TutorialViewClient(
         return this
     }
 
-    // TODO: チュートリアルの文字とかを載せるviewを載せる
     public fun setContentView(@LayoutRes content: Int): TutorialViewClient {
         val child: View =
             LayoutInflater.from(tutorialView.getContext()).inflate(content, container, false)
