@@ -41,6 +41,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             .subscribeOn(Schedulers.io())
             .subscribe {
                 TutorialViewClient.from(this)
+                    .setContentView(R.layout.view_tutorial_content)
                     .on(binding.previewTextLabel)
                     .addRoundRect(40)
                     .show()

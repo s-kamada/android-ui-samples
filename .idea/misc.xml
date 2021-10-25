@@ -8,6 +8,7 @@
         <entry key="app/src/main/res/drawable/bg_edittext.xml" value="0.225" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1282051282051282" />
         <entry key="app/src/main/res/layout/cell_property.xml" value="0.2844574780058651" />
+        <entry key="app/src/main/res/layout/view_tutorial_content.xml" value="0.1" />
       </map>
     </option>
   </component>

@@ -2,4 +2,5 @@
     <string name="app_name">ui-samples</string>
 
     <string name="tutorial_view">tutorial view</string>
+    <string name="tutorial_text">チュートリアルの文字！\n改行されたチュートリアルの文字！</string>
 </resources>

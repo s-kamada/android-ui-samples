@@ -3,12 +3,14 @@ package com.example.ui_samples.tutorial
 import android.R
 import android.app.Activity
 import android.graphics.Rect
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.core.view.ViewCompat
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.view.ViewTreeObserver
+import androidx.annotation.LayoutRes
 import androidx.core.view.ViewPropertyAnimatorListenerAdapter
 
 class TutorialViewClient(
@@ -75,9 +77,12 @@ class TutorialViewClient(
     }
 
     // TODO: チュートリアルの文字とかを載せるviewを載せる
-//    public fun setContentView(): TutorialViewClient {
-//        return this
-//    }
+    public fun setContentView(@LayoutRes content: Int): TutorialViewClient {
+        val child: View =
+            LayoutInflater.from(tutorialView.getContext()).inflate(content, container, false)
+        container.addView(child, MATCH_PARENT, MATCH_PARENT)
+        return this
+    }
 
     companion object {
         public fun from(activity: Activity): TutorialViewClient {
