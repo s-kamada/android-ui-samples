@@ -2,6 +2,9 @@
 buildscript {
     ext.groupie_version = "2.9.0"
     ext.timber_version = '5.0.1'
+    ext.rx_java_version = "3.0.11"
+    ext.rx_kotlin_version = "3.0.1"
+    ext.rx_android_version = "3.0.0"
 
     repositories {
         google()
