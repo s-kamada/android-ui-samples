@@ -8,3 +8,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "ui-samples"
 include ':app'
+include ':datamodule'
