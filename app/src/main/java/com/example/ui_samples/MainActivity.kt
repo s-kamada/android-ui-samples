@@ -1,10 +1,7 @@
 package com.example.ui_samples
 
-import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.AttributeSet
-import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import com.example.ui_samples.databinding.ActivityMainBinding
 import com.xwray.groupie.GroupAdapter
