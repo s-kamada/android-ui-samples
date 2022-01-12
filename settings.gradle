@@ -8,6 +8,7 @@ dependencyResolutionManagement {
 }
 rootProject.name = "ui-samples"
 include ':app'
-include ':samples'
-include ':samples'
-include ':weather'
+include 'ui:samples'
+include 'data:samples'
+include 'ui:weather'
+include 'data:weather'
