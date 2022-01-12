@@ -10,3 +10,4 @@ rootProject.name = "ui-samples"
 include ':app'
 include ':datamodule'
 include ':samples'
+include ':weather'
